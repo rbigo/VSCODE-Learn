@@ -1,0 +1,80 @@
+//Creator: 肖易 2022.08.15
+//Name: cn_Stamp_req_GeneralManagerSign
+//Type: c#    
+//Event：cn_Stamp_req-> cn_stamp_req_workflow-> InstructionsOfGeneralManager-> onActivate()
+//Comments:获取团队的相关信息代入到表单信息中
+//update :
+Innovator inn=this.getInnovator();
+string activityID=this.getID();
+
+    this.fetchRelationships("Affected Item");
+    Item EXPRESS_DCO=this.getRelationships("Affected Item");
+
+
+
+
+Item cn_Stamp_req=GetCurrentCn_Stamp_req(activityID,inn);
+
+if(cn_Stamp_req.isError())return cn_Stamp_req;
+string managed_by_id=cn_Stamp_req.getProperty("managed_by_id");
+Item item=GetItem("Activity Assignment","source_id",activityID,inn);
+Item result;
+string where="";
+if(item.getItemCount()==1){
+    string related_id=item.getProperty("related_id");
+    if(related_id!=managed_by_id){
+        where=$"[ACTIVITY_ASSIGNMENT].SOURCE_ID='{activityID}'";
+        item=DeteleItem("Activity Assignment",where,inn);
+        result=SetSignOnMen(managed_by_id,activityID,inn);
+    }
+}else if(item.getItemCount()>1){
+    where=$"[ACTIVITY_ASSIGNMENT].SOURCE_ID='{activityID}'"; 
+    item=DeteleItem("Activity Assignment",where,inn);
+    result=SetSignOnMen(managed_by_id,activityID,inn);
+}else if(item.getItemCount()==0){
+    result=SetSignOnMen(managed_by_id,activityID,inn);
+}
+
+return this;
+}
+//删除item
+public Item DeteleItem(string type,string where,Innovator inn){
+    Item item=inn.newItem(type,"delete");
+    item.setAttribute("where",where);
+    item=item.apply();
+return item;
+}
+//设置相应节点的签审人
+public Item SetSignOnMen(string signOnMenID, string activity_Id, Innovator inn) 
+        {
+            Item result = inn.newError("签审人添加失败");
+            result=AddSignStaff(activity_Id, signOnMenID,inn);
+            return result;
+        }
+//获取该流程的用印申请单
+public Item GetCurrentCn_Stamp_req(string activityID,Innovator inn)
+{
+    Item cn_Stamp_req=inn.newError("总经理批示流程节点不存在");
+    Item workflowProcessActivity=GetItem("Workflow Process Activity","related_id",activityID,inn);
+    string source_id=workflowProcessActivity.getProperty("source_id");
+    Item workFlow=GetItem("Workflow","related_id",source_id,inn);
+    source_id=workFlow.getProperty("source_id");
+    cn_Stamp_req=inn.getItemById("cn_Stamp_req",source_id);
+    return cn_Stamp_req;
+}
+//添加签审人到相应节点
+public Item AddSignStaff(string source_id,string related_id,Innovator inn) 
+{
+    Item myItem = this.newItem("Activity Assignment", "add");
+    myItem.setProperty("related_id", related_id);
+    myItem.setProperty("source_id", source_id);
+    myItem=myItem.apply();
+    return myItem;
+}
+        public Item GetItem(string type,string property,string value,Innovator inn) 
+        {
+             Item item = inn.newItem(type);
+            item.setProperty(property, value);
+            item = item.apply("get");
+            return item;
+        }

@@ -1,0 +1,34 @@
+/*
+Method Name : JX_SelectCategory
+Creator : chenfei
+Created On : 20201027
+Server-side ：C#   
+Item Type : Express DCO
+Server Event : onAfterAdd
+Comment :根据文档类型选择流程DCO流程
+*/
+
+
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+bool PermissionWasSet  = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+Innovator inn = this.getInnovator();
+try
+{
+     this.fetchRelationships("Affected Item");
+    Item EXPRESS_DCO=this.getRelationships("Affected Item");
+   
+    
+   
+   
+    
+}
+catch(Exception ex)
+{
+    return inn.newError("[JX_SelectCategory]:"+ex.Message);
+}
+finally
+{
+	if (PermissionWasSet) Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+}
+
+return this;

@@ -1,0 +1,100 @@
+document.thisItem
+document.thisItem.node
+document.thisItem.getRelatedItem
+document.thisItem.getRelatedItem()
+var x=document.thisItem.getRelationships("")
+document.thisItem.node
+var x=document.thisItem.getRelationships("Express DCO Affected Item")
+x.node
+x.getItemByIndex(0)
+x.getItemByIndex(0).node
+var y=x.getRelatedItem()
+x.getItemByIndex(0).getRelatedItem()
+var y=x.getItemByIndex(0).getRelatedItem()
+y.node
+y.getProperty("new_item_id")
+y.getPropertyItem("new_item_id")
+var z=y.getPropertyItem("new_item_id")
+z.node
+var xx=aras.IomInnovator.newItem("Change Controlled Item");
+var xx=aras.IomInnovator.newItem("Change Controlled Item","get");
+xx.getProperty("cn_project")
+var zz=xx.apply()
+zz
+var x=document.thisItem.getRelationships("Express DCO Affected Item")
+x
+var x=document.thisItem.getRelationships("Express DCO Affected Item")
+var y=x.getItemByIndex(0).getRelatedItem()
+var z=y.getPropertyItem("new_item_id")
+var z=y.getProperty("new_item_id")
+var xx=aras.IomInnovator.newItem("Change Controlled Item","get");
+xx.setID(z)
+var zz=xx.apply()
+var zzz=zz.getProperty("cn_project")
+var xmjh=aras.IomInnovator.newItem("project","get");
+xmjh.setID(zzz)
+var xmjss=xmjh.apply()
+xmjss.node
+xmjss.addRelationship("Project Team")
+xmjss.addRelationship("Project_Team")
+xmjss.fetchRelationships("Project Team")
+xmjss.node
+xmjss.getRelationships("Project Team")
+var zzzzz=xmjss.getRelationships("Project Team")
+zzzzz
+zzzzz.getItemByIndex(0)
+zzzzz.getItemByIndex(0).node
+zzzzz.getItemByIndex(0).getRelatedItem()
+zzzzz.getItemByIndex(0).getRelatedItem().node
+zzzzz.getItemByIndex(0).node
+zzzzz.getItemByIndex(0).getProperty("role")
+document.thisItem.node
+zzzzz.getItemByIndex(0)
+zzzzz.getItemByIndex(0).node
+var qwer=aras.IomInnovator.newItem("Project","get")
+qwer.setID("40D0CEBE4C524CE9B549819943E687FB")
+var wer=qwer.apply()
+wer
+wer.node
+wer.fetchRelationships("Project Team")
+wer.node
+var sx="AA3"
+var x=aras.IomInnovator.newItem("value","get")
+x.setProperty("source_id","E15C81B361CB44F09508F9259D1C5B5D")
+x.setProperty("value",sx)
+x.node
+var t=x.apply()
+t.node
+40D0CEBE4C524CE9B549819943E687FB
+var xmjh=aras.IomInnovator.newItem("project","get");
+xmjh.setID("40D0CEBE4C524CE9B549819943E687FB")
+var xmjss=xmjh.apply()
+xmjss.node
+xmjss.fetchFileProperty("Project Team")
+xmjss.fetchRelationships("Project Team")
+xmjss.fetchRelationships("Project Team")
+var qwer=xmjss.getRelationships("Project Team")
+qwer.getItemByIndex(0).getProperty("role")
+var aaa=qwer.getItemByIndex(0).getProperty("role")
+var bbb=aras.IomInnovator.newItem("vaule","get")
+bbb.setProperty("value",aaa)
+bbb.setProperty("source_id","E15C81B361CB44F09508F9259D1C5B5D")
+var ccc=bbb.apply()
+ccc.dom
+var bbb=aras.IomInnovator.newItem("value","get")
+bbb.setProperty("value",aaa)
+bbb.setProperty("source_id","E15C81B361CB44F09508F9259D1C5B5D")
+var ccc=bbb.apply()
+ccc.getProperty("lable")
+ccc.node
+ccc.getProperty("label")
+qwer.getItemByIndex(0).getRelatedItem()
+qwer.getItemByIndex(0).getRelatedItem().node
+qwer.getItemByIndex(0).getRelatedItem()
+qwer.getItemByIndex(0).getRelatedItem().getID
+qwer.getItemByIndex(0).getRelatedItem().getID()
+
+
+
+
+
