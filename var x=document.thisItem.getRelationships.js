@@ -21,6 +21,7 @@ qwer.getItemByIndex(0).getRelatedItem().getID
 
 
 
+
 var AffectedItem=this.getRelationships("Batch Part")
 var RelatedItem=AffectedItem.getItemByIndex(0).getRelatedItem()
 var partId=RelatedItem.getProperty("id")
