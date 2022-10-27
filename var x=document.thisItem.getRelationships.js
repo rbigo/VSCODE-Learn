@@ -19,7 +19,7 @@ var ccc=bbb.apply()
 ccc.getProperty("label")
 qwer.getItemByIndex(0).getRelatedItem().getID
 
-
+var 
 
 
 var AffectedItem=this.getRelationships("Batch Part")
@@ -46,3 +46,19 @@ setTimeout(function() {
 
 
 
+var innovator = new Innovator();
+var partItem = innovator.newItem("Part", "add");
+partItem.setProperty("item_number", "999-888");
+partItem.setProperty("description", "Some Assy");
+
+var bomItem = innovator.newItem("Part BOM", "add");
+bomItem.setProperty("quantity", "10");
+
+var relatedItem = new Item("Part", "add");
+relatedItem.setProperty("item_number", "123-456");
+relatedItem.setProperty("description", "1/4w 10% 10K Resistor");
+
+bomItem.setRelatedItem(relatedItem);
+partItem.addRelationship(bomItem);
+
+var resultItem = partItem.apply();
