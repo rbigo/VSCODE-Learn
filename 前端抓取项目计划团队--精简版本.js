@@ -19,7 +19,6 @@ var ccc=bbb.apply()
 ccc.getProperty("label")
 qwer.getItemByIndex(0).getRelatedItem().getID
 
-var 
 
 
 var AffectedItem=this.getRelationships("Batch Part")

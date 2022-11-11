@@ -1,0 +1,142 @@
+<BODY>
+     
+    <font size="+1">
+        <p>Jinxin partner, please log in to the PLM system to handle related business, thank you!</p>
+        <p>
+            
+            <font size="+0" style="font-variant: small-caps">当前任务: </font>
+            ${Item[@type="Activity"]/name}  --- 
+            <br />
+            <div id='tempDiv'></div>
+            <a id="link" href='http://localhost/ICD/?StartItem=ECN:'+'GGG'>任务链接</a>
+
+        </p>
+        
+        <p>
+            <font size="+0" style="font-variant: small-caps">当前关卡: </font>
+            ${Item[@type="Activity"]/name}${Item[@type="Activity"]/id}
+            <br />
+            <font size="+0" style="font-variant: small-caps">申请人:</font>
+            ${Item[2]/title} 表单id${Item[2]/config_id}
+        </p> 
+        <p>
+            <font size="+0" style="font-variant: small-caps">${Item[@type="ItemType"]/label}:</font>
+            ${Item[2]/item_number}
+            <br />
+            <font size="+0" style="font-variant: small-caps">流程主题:</font>
+            ${Item[2]/title} ${Item[2]/name}
+        </p>
+    </font>
+    <B>
+    ${substring("Some information needed to form this email was not found. Please contact your system administrator to ensure that the sender has privileges to view the items.", 1, (1-count(Item[2]))*158)}
+    </B>
+
+    <script text="text/javascript">
+       var zz=document.getElementById("tempDiv")
+         var itemInstanceId=zz.innerText
+         if(itemInstanceId==null)
+         {
+            itemInstanceId="我是空的"
+         }
+         var link=document.getElementById("link")
+         var InstanceLink="http://localhost/ICD/?StartItem=ECN:"+itemInstanceId
+         link.setAttribute("href",InstanceLink)
+    </script>
+</BODY>
+
+<Item type="Activity" id="${Item/ActivityId}" action="get" select="name,id,message" />
+<Item type="${Item/@type}" id="${Item/@id}" action="get" select="item_number,title,name,description,created_by_id,config_id" />
+<Item type="ItemType" id="${Item/@typeId}" action="get" select="label" />
+
+
+
+<BODY>
+     
+    <font size="+1">
+        <p>Jinxin partner, please log in to the PLM system to handle related business, thank you!</p>
+        <p>
+            
+            <font size="+0" style="font-variant: small-caps">当前任务: </font>
+            ${Item[@type="Activity"]/name}  --- 
+            <br />
+            <div id='tempDiv' >${Item[@type="Activity"]/id}</div>
+            <a id="link" >任务链接</a>
+
+        </p>
+        
+        <p>
+            <font size="+0" style="font-variant: small-caps">当前关卡: </font>
+            ${Item[@type="Activity"]/name}${Item[@type="Activity"]/id}
+            <br />
+            <font size="+0" style="font-variant: small-caps">申请人:</font>
+            ${Item[2]/title} 表单id${Item[2]/config_id}
+        </p> 
+        <p>
+            <font size="+0" style="font-variant: small-caps">${Item[@type="ItemType"]/label}:</font>
+            ${Item[2]/item_number}
+            <br />
+            <font size="+0" style="font-variant: small-caps">流程主题:</font>
+            ${Item[2]/title} ${Item[2]/name}
+        </p>
+    </font>
+    <B>
+    ${substring("Some information needed to form this email was not found. Please contact your system administrator to ensure that the sender has privileges to view the items.", 1, (1-count(Item[2]))*158)}
+    </B>
+
+    <script text="text/javascript">
+        debugger
+       var zz=document.getElementById("tempDiv")
+        var itemInstanceId=zz.innerText
+        
+         var link=document.getElementById("link")
+         var InstanceLink="http://localhost/ICD/?StartItem=ECN:"+itemInstanceId
+         link.href = InstanceLink;
+         //link.setAttribute("href",InstanceLink)
+    </script>
+</BODY>
+46C8C25D2C874B4CBEF7D693AC85A864
+
+
+
+
+
+<BODY>
+
+<font size="+1">
+  <p>Jinxin partner, please log in to the PLM system to handle related business, thank you!</p>
+  <p>
+
+    <font size="+0" style="font-variant: small-caps">当前任务: </font>
+    ${Item[@type="Activity"]/name}  ---
+    <br />
+  <div id='tempDiv' >${Item[@type="Activity"]/id}</div>
+  <a id="link" >任务链接</a>
+  <a id="link" href= "http://localhost/ICD/?StartItem=${Item[2]/@type}:${Item[2]/config_id} ">这是测试链接</a>
+  </p>
+
+  <p>
+    <font size="+0" style="font-variant: small-caps">当前关卡: </font>
+    ${Item[@type="Activity"]/name}${Item[@type="Activity"]/id}
+    <br />
+    <font size="+0" style="font-variant: small-caps">申请人:</font>
+    ${Item[2]/title} 表单id${Item[2]/config_id}
+  </p>
+  <p>
+    <font size="+0" style="font-variant: small-caps">${Item[@type="ItemType"]/label}:</font>
+    ${Item[2]/item_number}
+    <br />
+    <font size="+0" style="font-variant: small-caps">流程主题:</font>
+    ${Item[2]/title} ${Item[2]/name}
+  </p>
+</font>
+<B>
+  ${substring("Some information needed to form this email was not found. Please contact your system administrator to ensure that the sender has privileges to view the items.", 1, (1-count(Item[2]))*158)}
+</B>
+
+
+</BODY>
+
+
+<Item type="Activity" id="${Item/ActivityId}" action="get" select="name,id,message" />
+<Item type="${Item/@type}" id="${Item/@id}" action="get" select="item_number,title,name,description,created_by_id,config_id", />
+<Item type="ItemType" id="${Item/@typeId}" action="get" select="label" />

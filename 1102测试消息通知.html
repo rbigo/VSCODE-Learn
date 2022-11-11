@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style type="text/css">
+    @import "../javascript/dojo/resources/dojo.css";
+        @import "../javascript/dijit/themes/claro/claro.css";
+        @import "../javascript/include.aspx?classes=common.css";
+        @import "../styles/default.css";
+    #workspaceContainer {
+          top:60px;
+          right:0px; 
+          bottom:0px; 
+          width:600px;
+        }
+        #tabsContainer{
+          left: 0px; 
+          right: 0px; 
+          height:30px;
+          width: 600px;
+                            
+        }
+        #dataContainer {
+          visibility: hidden; 
+          position: absolute; 
+          top: 0px; 
+          left: 0px; 
+          right: 0px; 
+          bottom: 0px; 
+          padding: 4px;
+        }
+    .dijitTabPaneWrapper{
+    display:none;
+    }
+    </style>
+</head>
+<body>
+  
+    
+    <div id="tabsContainer"></div>
+    <div id="workspaceContainer">
+        <iframe id="workspace" src="blank.html" style="border: 0;width: 600px;height: 400px;margin-top:30px;"></iframe>
+    
+    </div>
+    
+    <script>
+    //設定tab物件
+    var tabApplet = null;
+    clientControlsFactory.createControl("Aras.Client.Controls.Experimental.SimpleTabbar", undefined, function(control) {
+      tabApplet = control;
+      tabApplet.addTab("report","Note");
+      tabApplet.addTab("stylesheet2","Other");
+      clientControlsFactory.on(tabApplet, {
+        "onClick": onClick
+      });
+      document.getElementById("tabsContainer").appendChild(tabApplet.domNode);
+      tabApplet.startup();
+    });
+    
+    /***
+     * 按下tab按鈕事件
+     * @param tabId selected tab ID
+     */
+    function onClick(tabId) {
+      if (tabId == "report") {
+            //讀取Aras Form
+        // Receive form from server
+        var mode = (parent.parent.isEditMode ? "edit" : "view");
+        var repTabForm = aras.getFormForDisplay(aras.getFormId("work_order_note"), mode);
+        aras.uiShowItemInFrameEx(document.getElementById("workspace"), parent.parent.item, mode, undefined, repTabForm.node);
+      }
+      else {
+            //可預設讀取範本HTML檔
+        // Load stylesheet form from html
+        var workSpace = document.getElementById("workspace");
+        if (workSpace) {
+          workSpace.src = tabId + '.html';
+        }
+      }
+    }
+    </script>
+</body>
+</html>
